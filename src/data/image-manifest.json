@@ -1,0 +1,278 @@
+{
+  "hero/services": {
+    "src": "/images/generated/hero/services.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "A software developer writing code in a modern office"
+  },
+  "hero/industries": {
+    "src": "/images/generated/hero/industries.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "A business team discussing a project around a laptop"
+  },
+  "hero/case-studies": {
+    "src": "/images/generated/hero/case-studies.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "A team reviewing charts and reports, viewed from above"
+  },
+  "hero/technologies": {
+    "src": "/images/generated/hero/technologies.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "Programming code on a monitor"
+  },
+  "hero/hire-developers": {
+    "src": "/images/generated/hero/hire-developers.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "A developer's desk with dual monitors and a laptop"
+  },
+  "hero/engagement-models": {
+    "src": "/images/generated/hero/engagement-models.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "Colleagues shaking hands in an office"
+  },
+  "hero/process": {
+    "src": "/images/generated/hero/process.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "A team planning work on a wall of sticky notes"
+  },
+  "hero/about": {
+    "src": "/images/generated/hero/about.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "An engineering team working together around a table"
+  },
+  "hero/careers": {
+    "src": "/images/generated/hero/careers.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "Colleagues collaborating at laptops"
+  },
+  "hero/blog": {
+    "src": "/images/generated/hero/blog.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "A programmer working at a desk with a monitor showing code"
+  },
+  "hero/service-build": {
+    "src": "/images/generated/hero/service-build.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "A developer workspace with code on screen"
+  },
+  "hero/service-design": {
+    "src": "/images/generated/hero/service-design.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "UX wireframe sketches in a notebook beside a smartphone"
+  },
+  "hero/service-data-ai": {
+    "src": "/images/generated/hero/service-data-ai.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "An analytics chart on a laptop screen"
+  },
+  "hero/service-cloud-ops": {
+    "src": "/images/generated/hero/service-cloud-ops.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "A network server rack lit in blue"
+  },
+  "hero/service-quality-security": {
+    "src": "/images/generated/hero/service-quality-security.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "A security monitoring interface on a screen"
+  },
+  "hero/service-teams": {
+    "src": "/images/generated/hero/service-teams.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "A software team gathered around a laptop"
+  },
+  "hero/industry/healthcare": {
+    "src": "/images/generated/hero/industry/healthcare.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "A doctor and a colleague reviewing patient information on a tablet"
+  },
+  "hero/industry/fintech": {
+    "src": "/images/generated/hero/industry/fintech.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "A customer paying with a smartphone at a payment terminal"
+  },
+  "hero/industry/retail-ecommerce": {
+    "src": "/images/generated/hero/industry/retail-ecommerce.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "A happy shopper holding a smartphone and shopping bags"
+  },
+  "hero/industry/education": {
+    "src": "/images/generated/hero/industry/education.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "A student learning on a laptop in a lecture hall"
+  },
+  "hero/industry/logistics": {
+    "src": "/images/generated/hero/industry/logistics.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "A warehouse worker managing inventory on a tablet"
+  },
+  "hero/industry/real-estate": {
+    "src": "/images/generated/hero/industry/real-estate.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "A real estate agent showing a new apartment to a couple"
+  },
+  "hero/industry/manufacturing": {
+    "src": "/images/generated/hero/industry/manufacturing.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "An industrial robotic arm on a production line"
+  },
+  "hero/industry/travel-hospitality": {
+    "src": "/images/generated/hero/industry/travel-hospitality.webp",
+    "width": 1920,
+    "height": 640,
+    "alt": "A traveller pulling a suitcase through a hotel lobby"
+  },
+  "industry-panel/healthcare": {
+    "src": "/images/generated/industry-panel/healthcare.webp",
+    "width": 800,
+    "height": 1060,
+    "alt": "A doctor and a colleague reviewing patient information on a tablet"
+  },
+  "industry-panel/fintech": {
+    "src": "/images/generated/industry-panel/fintech.webp",
+    "width": 800,
+    "height": 1060,
+    "alt": "A customer paying with a smartphone at a contactless payment terminal"
+  },
+  "industry-panel/retail-ecommerce": {
+    "src": "/images/generated/industry-panel/retail-ecommerce.webp",
+    "width": 800,
+    "height": 1060,
+    "alt": "A happy shopper holding a smartphone and shopping bags"
+  },
+  "industry-panel/education": {
+    "src": "/images/generated/industry-panel/education.webp",
+    "width": 800,
+    "height": 1060,
+    "alt": "A student learning on a laptop in a lecture hall"
+  },
+  "industry-panel/logistics": {
+    "src": "/images/generated/industry-panel/logistics.webp",
+    "width": 800,
+    "height": 1060,
+    "alt": "A warehouse worker managing inventory on a tablet"
+  },
+  "industry-panel/real-estate": {
+    "src": "/images/generated/industry-panel/real-estate.webp",
+    "width": 800,
+    "height": 1060,
+    "alt": "A real estate agent showing a new apartment to a couple"
+  },
+  "industry-panel/manufacturing": {
+    "src": "/images/generated/industry-panel/manufacturing.webp",
+    "width": 800,
+    "height": 1060,
+    "alt": "An industrial robotic arm on an automated production line"
+  },
+  "industry-panel/travel-hospitality": {
+    "src": "/images/generated/industry-panel/travel-hospitality.webp",
+    "width": 800,
+    "height": 1060,
+    "alt": "A traveller pulling a suitcase through a hotel lobby"
+  },
+  "case/taxi-booking-platform-erp-website-flutter-app": {
+    "src": "/images/generated/case/taxi-booking-platform-erp-website-flutter-app.webp",
+    "width": 1200,
+    "height": 675,
+    "alt": "A smartphone showing a ride route inside a car"
+  },
+  "case/restaurant-management-platform-erp-website-flutter-app": {
+    "src": "/images/generated/case/restaurant-management-platform-erp-website-flutter-app.webp",
+    "width": 1200,
+    "height": 675,
+    "alt": "A restaurant ordering screen showing a food menu"
+  },
+  "case/telehealth-remote-patient-monitoring-platform": {
+    "src": "/images/generated/case/telehealth-remote-patient-monitoring-platform.webp",
+    "width": 1200,
+    "height": 675,
+    "alt": "A doctor running an online medical consultation with a tablet and phone"
+  },
+  "case/sme-lending-platform-automated-underwriting": {
+    "src": "/images/generated/case/sme-lending-platform-automated-underwriting.webp",
+    "width": 1200,
+    "height": 675,
+    "alt": "A small business owner reviewing financial charts on a laptop"
+  },
+  "case/headless-commerce-replatform-fashion-retailer": {
+    "src": "/images/generated/case/headless-commerce-replatform-fashion-retailer.webp",
+    "width": 1200,
+    "height": 675,
+    "alt": "A shopper browsing a fashion store on a smartphone"
+  },
+  "case/fleet-dispatch-optimisation-ml-eta-prediction": {
+    "src": "/images/generated/case/fleet-dispatch-optimisation-ml-eta-prediction.webp",
+    "width": 1200,
+    "height": 675,
+    "alt": "A delivery driver checking packages beside a delivery van"
+  },
+  "case/adaptive-learning-platform-generative-ai-tutor": {
+    "src": "/images/generated/case/adaptive-learning-platform-generative-ai-tutor.webp",
+    "width": 1200,
+    "height": 675,
+    "alt": "A child learning online on a laptop at home"
+  },
+  "case/iot-predictive-maintenance-mes-modernization": {
+    "src": "/images/generated/case/iot-predictive-maintenance-mes-modernization.webp",
+    "width": 1200,
+    "height": 675,
+    "alt": "A robotic arm in an automated industrial setup"
+  },
+  "blog/kubernetes-cost-optimisation-finops-checklist": {
+    "src": "/images/generated/blog/kubernetes-cost-optimisation-finops-checklist.webp",
+    "width": 1200,
+    "height": 675,
+    "alt": "Cover: Kubernetes cost optimisation"
+  },
+  "blog/custom-software-development-cost-2026": {
+    "src": "/images/generated/blog/custom-software-development-cost-2026.webp",
+    "width": 1200,
+    "height": 675,
+    "alt": "Cover: software development cost in 2026"
+  },
+  "blog/building-production-rag-systems": {
+    "src": "/images/generated/blog/building-production-rag-systems.webp",
+    "width": 1200,
+    "height": 675,
+    "alt": "Cover: production RAG systems"
+  },
+  "blog/design-systems-figma-tokens-to-production-components": {
+    "src": "/images/generated/blog/design-systems-figma-tokens-to-production-components.webp",
+    "width": 1200,
+    "height": 675,
+    "alt": "Cover: design systems with Figma and React"
+  },
+  "blog/practical-guide-legacy-application-modernization": {
+    "src": "/images/generated/blog/practical-guide-legacy-application-modernization.webp",
+    "width": 1200,
+    "height": 675,
+    "alt": "Cover: legacy application modernization"
+  },
+  "blog/native-vs-flutter-vs-react-native": {
+    "src": "/images/generated/blog/native-vs-flutter-vs-react-native.webp",
+    "width": 1200,
+    "height": 675,
+    "alt": "Cover: native vs Flutter vs React Native"
+  }
+}

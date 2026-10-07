@@ -1,0 +1,1279 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-bricolage), "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "BwGradual", var(--font-bricolage), "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand palette, sampled from the INFIDEC logo */
+  --color-paper: #ffffff;
+  --color-mist: #f5f7fc;
+  --color-haze: #eaf0ff;
+  --color-line: #e3e7f2;
+  --color-ink: #070b2e;
+  --color-ink-soft: #1c2250;
+  --color-slate: #4a5170;
+  --color-muted: #5f6684;
+  --color-blue: #0a5bff;
+  --color-blue-deep: #0039c6;
+  --color-cyan: #00c2f0;
+  --color-violet: #6d28d9;
+  --color-orchid: #a855f7;
+
+  --radius-chip: 6px;
+  --radius-btn: 10px;
+  --radius-panel: 20px;
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+  ::selection {
+    background: var(--color-haze);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  .display-1,
+  .display-2,
+  .display-3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* Content width: 1240px, widening to 1360px (136rem at a 10px rem) on screens of 1400px and up */
+:root {
+  --container-max: 1240px;
+  --gutter: 1.25rem;
+}
+@media (min-width: 768px) {
+  :root {
+    --gutter: 2rem;
+  }
+}
+@media (min-width: 1400px) {
+  :root {
+    --container-max: 85rem; /* 1360px */
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* Display type: tight, heavy, logo-like */
+  .display-1 {
+    font-size: clamp(2.5rem, 5.6vw + 0.5rem, 4.75rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    font-weight: 700;
+  }
+  .display-2 {
+    font-size: clamp(2rem, 3.2vw + 0.75rem, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+  .display-3 {
+    font-size: clamp(1.5rem, 1.4vw + 1rem, 2rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 650;
+  }
+  .lede {
+    font-size: clamp(1.0625rem, 0.4vw + 1rem, 1.25rem);
+    line-height: 1.6;
+    color: var(--color-slate);
+  }
+
+  /* The brand gradient, used only on the tile motif and a few accents */
+  .brand-gradient {
+    background-image: linear-gradient(135deg, #6d28d9 0%, #0a5bff 55%, #00c2f0 100%);
+  }
+  .brand-gradient-text {
+    background-image: linear-gradient(100deg, #6d28d9, #0a5bff 60%, #0090d6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .prose-infidec {
+    color: var(--color-slate);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+  .prose-infidec h2 {
+    color: var(--color-ink);
+    font-size: 1.625rem;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    font-weight: 650;
+    margin-top: 2.75rem;
+    margin-bottom: 0.875rem;
+  }
+  .prose-infidec p + p {
+    margin-top: 1.1rem;
+  }
+  .prose-infidec ul {
+    margin-top: 1.1rem;
+    display: grid;
+    gap: 0.6rem;
+  }
+  .prose-infidec li {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  .prose-infidec li::before {
+    content: "";
+    position: absolute;
+    left: 0.15rem;
+    top: 0.62em;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 2px;
+    background: var(--color-blue);
+  }
+}
+
+/* One orchestrated motion moment: hero tiles assembling on load */
+@keyframes tile-in {
+  from {
+    opacity: 0;
+    transform: translate(var(--tx, -24px), var(--ty, -24px)) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.tile-in {
+  animation: tile-in 900ms var(--ease-out-quart) both;
+  animation-delay: var(--d, 0ms);
+}
+/* ------------------------------------------------------------------ */
+/* Technology tabs (home). Mirrors tatvasoft.com: glass bar, sliding   */
+/* indicator, 4-column glass logo grid.                                */
+/* ------------------------------------------------------------------ */
+.tech-tabs-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.tech-tabs-bar {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+  overflow-x: auto;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  background: linear-gradient(
+    148.3deg,
+    rgba(255, 255, 255, 0.4) 10.2%,
+    rgba(255, 255, 255, 0.28) 42.99%,
+    rgba(255, 255, 255, 0.28) 66.33%,
+    rgba(255, 255, 255, 0.4) 92.19%
+  );
+  backdrop-filter: blur(50px);
+  scrollbar-width: none;
+}
+.tech-tabs-bar::-webkit-scrollbar {
+  display: none;
+}
+.tech-tab {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 20px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 18px;
+  line-height: 24px;
+  white-space: nowrap;
+  color: #5f6684;
+  cursor: pointer;
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tech-tab.is-active {
+  color: var(--color-ink);
+}
+.tech-tab:hover {
+  color: var(--color-ink);
+}
+.tech-tab:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: -2px;
+}
+.tech-tab-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  background: linear-gradient(168deg, #dbe3fb, #c6d3f6);
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+  will-change: transform, width;
+}
+.tech-tabs-bar.is-ready .tech-tab-indicator {
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: start;
+  gap: 20px;
+}
+.tech-grid[hidden] {
+  display: none !important;
+}
+.tech-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  background: linear-gradient(162deg, rgba(255, 255, 255, 0.2) 10%, rgba(255, 255, 255, 0.14) 50%, rgba(255, 255, 255, 0.2) 92%);
+  transition: all 0.5s;
+}
+.tech-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
+.tech-cell-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+}
+.tech-cell-foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 16px;
+}
+.tech-cell-divider {
+  width: 80px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.7);
+}
+.tech-cell-name {
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--color-ink);
+  text-align: center;
+}
+@media (max-width: 991px) {
+  .tech-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .tech-tab {
+    flex: 0 0 auto;
+    padding: 15px 18px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  .tech-cell-name {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .tech-cell-logo {
+    width: 65px;
+    height: 65px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tech-tab,
+  .tech-tabs-bar.is-ready .tech-tab-indicator {
+    transition: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* FAQ (home). Mirrors tatvasoft.com: 2 columns of glass cards, one    */
+/* open at a time, 0.3s grid-row animation, +/- icon.                  */
+/* ------------------------------------------------------------------ */
+.faq-row {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 16px;
+}
+.faq-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.faq-item {
+  position: relative;
+  padding: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  background-image: linear-gradient(
+    148.3deg,
+    rgba(255, 255, 255, 0.4) 10.2%,
+    rgba(255, 255, 255, 0.28) 42.99%,
+    rgba(255, 255, 255, 0.28) 66.33%,
+    rgba(255, 255, 255, 0.4) 92.19%
+  );
+  transition: all 0.2s ease;
+}
+/* Gradient hairline border, as on the reference */
+.faq-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, #fff, transparent 40%, transparent 60%, #fff);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.faq-item:hover,
+.faq-item:focus-within {
+  background: rgba(249, 249, 249, 0.78);
+  box-shadow: 0 35px 40px 0 rgba(0, 0, 0, 0.06);
+}
+.faq-item.is-open {
+  backdrop-filter: blur(5px);
+}
+.faq-trigger {
+  display: flex;
+  width: 100%;
+  min-height: 24px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: left;
+  font-size: clamp(18px, 1.2vw + 12px, 20px);
+  line-height: 1.25;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+.faq-trigger:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 4px;
+}
+.faq-icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+.faq-icon::before,
+.faq-icon::after {
+  content: "";
+  position: absolute;
+  border: 1px solid var(--color-ink);
+  transition: all 0.2s ease;
+}
+.faq-icon::before {
+  left: 0;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+}
+.faq-icon::after {
+  left: 50%;
+  top: 0;
+  height: 100%;
+  transform: translateX(-50%);
+}
+.faq-item.is-open .faq-icon::after {
+  opacity: 0;
+  transform: translateX(-50%) rotate(90deg);
+}
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+.faq-item.is-open .faq-panel {
+  grid-template-rows: 1fr;
+}
+.faq-panel-inner {
+  overflow: hidden;
+}
+.faq-panel-inner p {
+  padding-top: 12px;
+  font-size: 16px;
+  letter-spacing: 0.02rem;
+  line-height: 1.625;
+  color: var(--color-ink-soft);
+}
+@media (min-width: 576px) {
+  .faq-item {
+    padding: 20px;
+  }
+}
+@media (min-width: 992px) {
+  .faq-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .faq-col {
+    gap: 24px;
+  }
+}
+@media (min-width: 1025px) {
+  .faq-trigger {
+    font-size: 20px;
+  }
+  .faq-panel-inner p {
+    padding-top: 16px;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Success stories (home). Mirrors tatvasoft.com: fading quote card.   */
+/* ------------------------------------------------------------------ */
+.home-testimonials-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.testimonials-rating {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-ink);
+}
+.testimonials-rating-platform {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.testimonials-swiper.swiper {
+  overflow: hidden;
+  border-radius: 12px;
+}
+.testimonials-swiper .swiper-slide {
+  height: auto;
+}
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  height: 100%;
+  padding: 40px;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  background: linear-gradient(265.54deg, #cfdfff, #eef4ff);
+}
+.testimonial-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.testimonial-quote-mark {
+  width: 60px;
+  height: 44px;
+  fill: #a8bcde;
+}
+.testimonial-quote p {
+  margin-bottom: 16px;
+  font-size: clamp(18px, 17.6px + 0.125vw, 20px);
+  line-height: 1.8;
+  color: var(--color-ink);
+}
+.testimonial-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: auto;
+}
+.testimonial-client {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.testimonial-client-logo {
+  width: auto;
+  max-height: 40px;
+}
+.testimonial-client-name {
+  font-size: clamp(18px, 17.6px + 0.125vw, 20px);
+  line-height: 28px;
+  color: var(--color-ink);
+}
+.testimonial-nav {
+  display: flex;
+  gap: 10px;
+}
+@media (max-width: 767px) {
+  .testimonial-card {
+    padding: 16px;
+  }
+  .testimonial-client {
+    flex: 1;
+    gap: 16px;
+  }
+  .testimonial-bottom {
+    gap: 16px;
+  }
+  .testimonial-client-logo {
+    max-width: 100px;
+  }
+  .testimonials-rating-platform {
+    font-size: 28px;
+  }
+}
+@media (max-width: 412px) {
+  .testimonial-client-name {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .testimonial-client {
+    flex: unset;
+    width: 100%;
+    gap: 10px;
+  }
+  .testimonial-bottom {
+    justify-content: flex-end;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Business outcomes (home). Mirrors tatvasoft.com: Swiper 1.13/view,  */
+/* 800ms loop, glass nav buttons, tinted image cards.                  */
+/* ------------------------------------------------------------------ */
+.bo-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+.bo-nav {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-shrink: 0;
+  gap: 10px;
+}
+.slider-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  color: var(--color-ink);
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  transition: all 0.5s;
+}
+.slider-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px 1px 0;
+  border-radius: inherit;
+  background: linear-gradient(200deg, #fff, rgba(255, 255, 255, 0.2) 13%, rgba(255, 255, 255, 0) 52%, rgba(255, 255, 255, 0.2) 86%, #fff);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.slider-btn:hover {
+  background-color: #fff;
+}
+/* Slides overflow the content column, like the reference; the page wrapper clips them */
+.bo-swiper.swiper {
+  overflow: visible;
+}
+.bo-swiper .swiper-slide {
+  height: auto;
+  /* Pre-size to Swiper's layout (1.13 per view) so initialisation causes no shift */
+  width: calc((100% - 16px) / 1.13);
+  margin-right: 16px;
+}
+@media (min-width: 767px) {
+  .bo-swiper .swiper-slide {
+    width: calc((100% - 20px) / 1.13);
+    margin-right: 20px;
+  }
+}
+.bo-card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 33px;
+  height: 100%;
+  min-height: 480px;
+  padding: 36px;
+  overflow: hidden;
+  border-radius: 12px;
+  color: #fff;
+}
+.bo-card-bg,
+.bo-card-tint {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+.bo-card-bg {
+  object-fit: cover;
+  object-position: right;
+}
+.bo-card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 18px;
+}
+.bo-card-header p {
+  line-height: 1.2;
+}
+.bo-card-header h3 {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 1.188vw + 22.2px, 45px);
+  font-weight: 300;
+  line-height: 1.2223;
+}
+.bo-card p {
+  width: 100%;
+  max-width: 390px;
+  line-height: 1.445;
+}
+.bo-card-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.bo-card-chips span {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  letter-spacing: 0.025rem;
+  line-height: 1.1;
+  color: #fff;
+  background: linear-gradient(145.01deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.24) 25%, rgba(0, 0, 0, 0.12) 50%, rgba(0, 0, 0, 0.24) 75%, rgba(0, 0, 0, 0.4));
+  backdrop-filter: blur(20px);
+}
+.bo-card-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 6px;
+}
+.bo-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: #fff;
+  font-size: clamp(18px, 17.6px + 0.125vw, 20px);
+}
+.bo-card-cta-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 8px;
+  background: var(--color-blue);
+  transition: all 0.2s ease;
+}
+.bo-card-cta:hover .bo-card-cta-badge {
+  transform: translateX(3px);
+}
+@media (max-width: 1023px) {
+  .bo-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.4);
+  }
+}
+@media (max-width: 767px) {
+  .bo-card {
+    min-height: 240px;
+    padding: 20px;
+  }
+  .bo-card p {
+    max-width: 100%;
+    font-size: 14px;
+  }
+  .bo-card-desc,
+  .bo-card-chips {
+    display: none;
+  }
+  .bo-card-header p {
+    line-height: 1.75;
+  }
+  .bo-nav {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Industries accordion (home). Mirrors the tatvasoft.com behaviour:   */
+/* flex-basis 0.4s, content fade-in 0.3s after, same breakpoints.      */
+/* ------------------------------------------------------------------ */
+.ind-row {
+  display: flex;
+  width: 100%;
+  height: 448px;
+  margin-top: 30px;
+  overflow: hidden;
+  border-block: 1px solid #fff;
+}
+.ind-item {
+  position: relative;
+  flex: 0 0 106px;
+  min-width: 0;
+  overflow: hidden;
+  border-right: 1px solid #fff;
+  background: linear-gradient(
+    148.3deg,
+    rgba(255, 255, 255, 0.4) 10.2%,
+    rgba(255, 255, 255, 0.28) 42.99%,
+    rgba(255, 255, 255, 0.28) 66.33%,
+    rgba(255, 255, 255, 0.4) 92.19%
+  );
+  backdrop-filter: blur(10px);
+  transition:
+    background 0.4s ease,
+    flex-basis 0.4s ease,
+    flex-grow 0.4s ease;
+}
+.ind-item:first-child {
+  border-left: 1px solid #fff;
+}
+@media (hover: hover) {
+  .ind-item:not(.is-active):hover {
+    background: rgba(249, 249, 249, 0.78);
+  }
+  .ind-item:hover .ind-label-arrow-wrapper {
+    background-color: var(--color-blue);
+    color: #fff;
+  }
+}
+.ind-item.is-active {
+  flex: 1 1 960px;
+}
+.ind-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  padding-bottom: 19px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+.ind-label:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: -2px;
+  border-radius: 0;
+}
+.ind-label-text {
+  color: var(--color-ink);
+  font-size: clamp(18px, 17.6px + 0.125vw, 20px);
+  line-height: 1;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.ind-label-arrow-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  color: var(--color-ink);
+  transition: all 0.5s;
+}
+.ind-label-arrow {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.ind-item.is-active .ind-label {
+  opacity: 0;
+  pointer-events: none;
+}
+.ind-panel {
+  display: none;
+  height: 100%;
+}
+.ind-item.is-active .ind-panel {
+  display: block;
+}
+.ind-panel-inner {
+  display: flex;
+  height: 100%;
+}
+.ind-panel-img {
+  flex-shrink: 0;
+  width: 340px;
+  height: 100%;
+  object-fit: cover;
+}
+.ind-panel-body {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 25px;
+}
+@keyframes ind-panel-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.ind-item.is-active .ind-panel-body {
+  animation: ind-panel-in 0.3s ease 0.3s both;
+}
+.ind-panel-title {
+  margin-bottom: 16px;
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+.ind-panel-desc {
+  max-width: 600px;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--color-ink-soft);
+}
+.ind-learn {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 24px;
+  color: var(--color-blue);
+  font-size: clamp(18px, 17.6px + 0.125vw, 20px);
+  line-height: 28px;
+}
+.ind-learn-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 8px;
+  background: var(--color-blue);
+  transition: transform 0.2s ease;
+}
+.ind-learn:hover .ind-learn-badge {
+  transform: translateX(3px);
+}
+.ind-panel-foot-title {
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: var(--color-ink-soft);
+}
+.ind-panel-foot {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 15px;
+}
+.ind-case {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--color-ink);
+}
+.ind-case:hover span {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.ind-case-thumb {
+  flex-shrink: 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  object-fit: cover;
+  overflow: hidden;
+}
+.ind-case-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 15px;
+  line-height: 20px;
+}
+@media (min-width: 575px) {
+  .ind-panel-foot {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1200px) and (max-width: 1800px) {
+  .ind-item {
+    flex-basis: 70px;
+  }
+  .ind-case {
+    gap: 12px;
+  }
+}
+@media (min-width: 1199px) and (max-width: 1440px) {
+  .ind-item {
+    flex-basis: 55px;
+  }
+  .ind-panel-foot {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .ind-case-thumb {
+    width: 65px;
+    height: 65px;
+  }
+  .ind-panel-body {
+    gap: 20px;
+    padding: 20px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .ind-item {
+    flex-basis: 60px;
+  }
+  .ind-panel-img {
+    display: none;
+  }
+  .ind-label-text {
+    font-size: 16px;
+  }
+}
+/* Tablet and mobile: stacked accordion with an animated height */
+@media (max-width: 991px) {
+  .ind-row {
+    flex-direction: column;
+    height: auto;
+    border-inline: 1px solid #fff;
+  }
+  .ind-item,
+  .ind-item.is-active {
+    flex: none;
+    width: 100%;
+    border-right: 0;
+    border-bottom: 1px solid #fff;
+  }
+  .ind-item:first-child {
+    border-left: 0;
+  }
+  .ind-item:last-child {
+    border-bottom: 0;
+  }
+  .ind-label {
+    position: static;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    text-align: left;
+  }
+  .ind-item.is-active .ind-label {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .ind-item.is-active .ind-label-arrow {
+    transform: rotate(45deg);
+  }
+  .ind-label-text {
+    font-size: 18px;
+    line-height: 1.4;
+    white-space: normal;
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+  .ind-panel,
+  .ind-item.is-active .ind-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    height: auto;
+    transition: grid-template-rows 0.35s ease;
+  }
+  .ind-item.is-active .ind-panel {
+    grid-template-rows: 1fr;
+  }
+  .ind-panel-inner {
+    min-height: 0;
+    overflow: hidden;
+    flex-direction: column;
+  }
+  .ind-panel-img {
+    display: block;
+    width: 100%;
+    height: 240px;
+    object-position: 50% 25%;
+  }
+  .ind-panel-title {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .ind-panel-body {
+    padding: 16px;
+  }
+}
+@media (max-width: 575px) {
+  .ind-panel-img {
+    height: 180px;
+  }
+  .ind-panel-desc,
+  .ind-learn {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+/* 3D icons: soft grounded shadow, idle float, lift-and-tilt on hover.
+   Float animates `translate` and hover uses `rotate`/`scale`, so the two compose. */
+/* The drop shadow is baked into the icon files, so no runtime filter is needed */
+.icon3d {
+  transition:
+    rotate 450ms var(--ease-out-quart),
+    scale 450ms var(--ease-out-quart);
+}
+.group:hover .icon3d,
+.icon3d:hover {
+  rotate: -8deg;
+  scale: 1.1;
+}
+@keyframes icon-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -6px;
+  }
+}
+.icon3d-float {
+  will-change: translate;
+  animation: icon-float 5.5s ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@keyframes flow {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+.flow-line {
+  stroke-dasharray: 6 6;
+  animation: flow 2.4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Cookie banner slides up once */
+@keyframes cookie-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.cookie-banner {
+  animation: cookie-in 0.4s var(--ease-out-quart) both;
+}
+
+/* ------------------------------------------------------------------ */
+/* Header: full-width white bar at the top of the page, then a         */
+/* floating glass bar (tatvasoft.com style) once the page scrolls.     */
+/* The header is fixed, so each page's first block reserves its height */
+/* with a transparent top border; its own background runs behind it.   */
+/* ------------------------------------------------------------------ */
+:root {
+  --header-offset: 64px;
+}
+@media (min-width: 1024px) {
+  :root {
+    --header-offset: 74px;
+  }
+}
+.site-header {
+  transition: top 0.35s ease;
+}
+/* Full-width state: the background spans the viewport */
+.site-header[data-floating="false"] {
+  background-color: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+  border-bottom: 1px solid var(--color-line);
+}
+.site-header-inner {
+  border: 1px solid transparent;
+  border-radius: 0;
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    border-radius 0.35s ease,
+    box-shadow 0.35s ease,
+    padding 0.35s ease;
+}
+/* Floating state: glass pill inset to the content width */
+.site-header[data-floating="true"] .site-header-inner {
+  padding-inline: 12px;
+  border-color: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255);
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+  box-shadow: 0 4px 8px rgba(10, 91, 255, 0.12);
+}
+@media (min-width: 1024px) {
+  .site-header[data-floating="true"] .site-header-inner {
+    padding-inline: 20px;
+  }
+}
+main > :first-child {
+  border-top: var(--header-offset) solid transparent;
+  background-origin: border-box;
+}
+html {
+  scroll-padding-top: calc(var(--header-offset) + 32px);
+}
+
+/* Home hero: outlined "AI" lettering and the growth arrow rising in once on load */
+.hero-outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--color-blue);
+  paint-order: stroke fill;
+}
+@keyframes growth-rise {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+.growth-arrow {
+  animation: growth-rise 1.1s var(--ease-out-quart) 0.2s both;
+}
+
+/* Frosted glass card on dark panels (awards & certifications) */
+.glass-card {
+  isolation: isolate;
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.05) 45%, rgba(255, 255, 255, 0.09) 100%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+    0 24px 48px -24px rgba(0, 0, 0, 0.55);
+  transition:
+    transform 0.35s var(--ease-out-quart),
+    background 0.35s ease;
+}
+/* Gradient hairline border */
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.06) 40%, rgba(127, 178, 255, 0.35));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+/* Soft light sheen across the top */
+.glass-card::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 55% 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(80% 100% at 20% 0%, rgba(255, 255, 255, 0.14), transparent 70%);
+  pointer-events: none;
+}
+.glass-card:hover {
+  transform: translateY(-4px);
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.07) 45%, rgba(255, 255, 255, 0.12) 100%);
+}
